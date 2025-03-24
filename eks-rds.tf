@@ -13,7 +13,7 @@ resource "aws_db_instance" "rds_postgres" {
   password              = var.db_password
   
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
-  vpc_security_group_ids = ["sg-0ce8ac3d76f4eb002"]
+  vpc_security_group_ids = ["sg-054a6a3108c1929b1"]
   publicly_accessible    = false
 
   backup_retention_period = 7
