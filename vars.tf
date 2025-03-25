@@ -59,5 +59,10 @@ variable "db_password" {
   description = "Senha do banco de dados"
   type        = string
   default     = "postgres"
-  sensitive   = true
 }
+
+variable "db_name" {
+  description = "Name of the database to create"
+  type        = string
+  default     = "foodorderdb"
+} 
