@@ -53,7 +53,7 @@ resource "kubernetes_deployment" "mongodb" {
           name  = "mongodb"
           image = "mongo:6.0.10"
 
-          resources = {
+          resources {
             requests = {
               memory = "512Mi"
               cpu    = "250m"
