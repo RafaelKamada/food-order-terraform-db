@@ -2,6 +2,10 @@ resource "kubernetes_namespace" "mongodb" {
   metadata {
     name = "mongodb"
   }
+
+  depends_on = [
+    aws_eks_node_group.workers
+  ]
 }
 
 # Configuração de rede para usar a mesma VPC e Security Group do cluster EKS
@@ -21,6 +25,10 @@ resource "kubernetes_persistent_volume_claim" "mongodb" {
       }
     }
   }
+
+  depends_on = [
+    aws_eks_node_group.workers
+  ]
 }
 
 resource "kubernetes_deployment" "mongodb" {
@@ -104,6 +112,12 @@ resource "kubernetes_deployment" "mongodb" {
       }
     }
   }
+
+  depends_on = [
+    aws_eks_node_group.workers,
+    kubernetes_namespace.mongodb,
+    kubernetes_persistent_volume_claim.mongodb
+  ]
 }
 
 resource "kubernetes_service" "mongodb" {
@@ -127,6 +141,12 @@ resource "kubernetes_service" "mongodb" {
 
     type = "LoadBalancer"
   }
+
+  depends_on = [
+    aws_eks_node_group.workers,
+    kubernetes_namespace.mongodb,
+    kubernetes_deployment.mongodb
+  ]
 }
 
 # Configuração adicional para permitir acesso do cluster EKS
@@ -159,4 +179,10 @@ resource "kubernetes_network_policy" "mongodb" {
       }
     }
   }
+
+  depends_on = [
+    aws_eks_node_group.workers,
+    kubernetes_namespace.mongodb,
+    kubernetes_deployment.mongodb
+  ]
 }
