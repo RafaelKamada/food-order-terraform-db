@@ -56,6 +56,13 @@ variable "mongodb_subnet_group_name" {
   default = "rds_subnet_group"  # Mantendo o mesmo padrão do RDS
 }
 
+variable "mongodb_admin_password" {
+  description = "Password for MongoDB admin user (only for development)"
+  type        = string
+  sensitive   = true
+  default     = "dev123"  # Senha simples para ambiente de desenvolvimento
+}
+
 # Security Group compartilhado para RDS e MongoDB
 variable "db_security_group_id" {
   description = "ID do Security Group criado na infraestrutura principal"
@@ -88,4 +95,3 @@ variable "db_password" {
   type        = string
   default     = "postgres"
 }
-

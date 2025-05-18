@@ -8,6 +8,9 @@ resource "aws_db_instance" "mongodb" {
   storage_encrypted      = true
   multi_az              = true
   
+  username              = "dev_user"
+  password              = var.mongodb_admin_password
+  
   db_name               = "FoodOrder_Cardapio"
   
   db_subnet_group_name   = var.mongodb_subnet_group_name
