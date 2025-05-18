@@ -25,29 +25,3 @@ output "postgres_connection_string" {
   value       = "postgresql://${aws_db_instance.rds_postgres.username}:${aws_db_instance.rds_postgres.password}@${aws_db_instance.rds_postgres.endpoint}:${aws_db_instance.rds_postgres.port}/${aws_db_instance.rds_postgres.db_name}"
   sensitive   = true
 }
-
-output "mongodb_endpoint" {
-  value = kubernetes_service.mongodb.status[0].load_balancer[0].ingress[0].hostname
-}
-
-output "mongodb_port" {
-  value = 27017
-}
-
-output "mongodb_username" {
-  value = "dev_user"
-}
-
-output "mongodb_password" {
-  value = var.mongodb_admin_password
-  sensitive = true
-}
-
-output "mongodb_database" {
-  value = "FoodOrder_Cardapio"
-}
-
-output "mongodb_connection_string" {
-  value = "mongodb://${mongodb_username}:${mongodb_password}@${mongodb_endpoint}:${mongodb_port}/${mongodb_database}"
-  sensitive = true
-}
