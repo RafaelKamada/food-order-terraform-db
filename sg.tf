@@ -44,6 +44,14 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["172.31.0.0/16"]  # CIDR block da VPC
   }
 
+  ingress {
+    description = "MongoDB from EKS"
+    from_port   = 27017
+    to_port     = 27017
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"]  # CIDR block da VPC
+  }
+
   egress {
     description = "All outbound traffic"
     from_port   = 0

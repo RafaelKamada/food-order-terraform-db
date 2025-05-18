@@ -17,3 +17,14 @@ output "vpc_id" {
 output "security_group_id" {
   value = aws_security_group.sg.id
 }
+
+# Outputs completos para strings de conexão
+output "postgres_connection_string" {
+  description = "String de conexão completa do PostgreSQL"
+  value = "postgresql://${aws_db_instance.rds_postgres.username}:${aws_db_instance.rds_postgres.password}@${aws_db_instance.rds_postgres.endpoint}:${aws_db_instance.rds_postgres.port}/${aws_db_instance.rds_postgres.db_name}"
+}
+
+output "mongodb_connection_string" {
+  description = "String de conexão completa do MongoDB"
+  value = "mongodb://${aws_db_instance.mongodb.endpoint}:27017/FoodOrder_Cardapio"
+}

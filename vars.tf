@@ -34,6 +34,34 @@ variable "rds_arn" {
   default = "arn:aws:rds:us-east-1:276201098979::db:rdsName"
 }
 
+# Variáveis MongoDB
+variable "mongodb_name" {
+  default = "food-order-mongodb"
+}
+
+variable "mongodb_instance_type" {
+  default = "db.t3.small"
+}
+
+variable "mongodb_allocated_storage" {
+  default = 20
+}
+
+variable "mongodb_backup_retention_period" {
+  default = 7
+}
+
+variable "mongodb_subnet_group_name" {
+  description = "Nome do Subnet Group criado na infraestrutura principal"
+  default = "rds_subnet_group"  # Mantendo o mesmo padrão do RDS
+}
+
+# Security Group compartilhado para RDS e MongoDB
+variable "db_security_group_id" {
+  description = "ID do Security Group criado na infraestrutura principal"
+  default = "sg-054a6a3108c1929b1"
+}
+
 variable "policyArn" {
   default = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
 }
