@@ -53,12 +53,12 @@ resource "kubernetes_deployment" "mongodb" {
           name  = "mongodb"
           image = "mongo:6.0.10"
 
-          resources {
-            requests {
+          resources = {
+            requests = {
               memory = "512Mi"
               cpu    = "250m"
             }
-            limits {
+            limits = {
               memory = "1Gi"
               cpu    = "500m"
             }
@@ -79,7 +79,7 @@ resource "kubernetes_deployment" "mongodb" {
             value = var.mongodb_admin_password
           }
 
-          ports {
+          port {
             container_port = 27017
           }
         }
@@ -96,7 +96,7 @@ resource "kubernetes_deployment" "mongodb" {
           "beta.kubernetes.io/arch" = "amd64"
         }
 
-        tolerations {
+        toleration {
           key      = "node-role.kubernetes.io/control-plane"
           operator = "Exists"
           effect   = "NoSchedule"
