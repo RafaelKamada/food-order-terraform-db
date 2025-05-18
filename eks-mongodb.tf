@@ -2,9 +2,8 @@ resource "aws_db_instance" "mongodb" {
   identifier             = var.mongodb_name
   engine                 = "mongodb"
   engine_version         = "6.0.10"
-  instance_class         = var.mongodb_instance_type
+  instance_class         = var.instanceType
   allocated_storage      = var.mongodb_allocated_storage
-  backup_retention_period = var.mongodb_backup_retention_period
   storage_encrypted      = true
   multi_az              = true
   
@@ -17,6 +16,7 @@ resource "aws_db_instance" "mongodb" {
   vpc_security_group_ids = [aws_security_group.sg.id]
   publicly_accessible    = false
 
+  backup_retention_period = 7
   backup_window          = "03:00-04:00"
   maintenance_window     = "Mon:04:00-Mon:05:00"
   
