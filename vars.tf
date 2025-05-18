@@ -89,8 +89,3 @@ variable "db_password" {
   default     = "postgres"
 }
 
-variable "db_name" {
-  description = "Name of the database to create"
-  type        = string
-  default     = "foodorderdb"
-} 
