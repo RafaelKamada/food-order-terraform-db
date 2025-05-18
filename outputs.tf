@@ -55,6 +55,6 @@ output "mongodb_database" {
 
 output "mongodb_connection_string" {
   description = "String de conexão completa do MongoDB"
-  value = "mongodb://${mongodb_username}:${mongodb_password}@${mongodb_endpoint}:${mongodb_port}/${mongodb_database}"
+  value = "mongodb://${aws_db_instance.rds_postgres.username}:${var.mongodb_admin_password}@${kubernetes_service.mongodb.status[0].load_balancer[0].ingress[0].hostname}:27017/FoodOrder_Cardapio"
   sensitive = true
 }
