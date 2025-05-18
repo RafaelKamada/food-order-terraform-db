@@ -92,8 +92,8 @@ resource "kubernetes_deployment" "mongodb" {
         }
 
         # Configuração de rede para usar a mesma VPC e Security Group do cluster EKS
-        node_selector {
-          "beta.kubernetes.io/arch" = "amd64"
+        node_selector = {
+          beta.kubernetes.io/arch = "amd64"
         }
 
         tolerations {
