@@ -14,8 +14,9 @@ variable "rdsName" {
   default = "food-order-db"
 }
 
-variable "eks_cluster"{
-  default = "EKS-FOOD-ORDER-DB"
+variable "eks_cluster" {
+  description = "Nome do cluster EKS"
+  default     = "EKS-FOOD-ORDER-DB"
 }
 
 variable "labRole" {
