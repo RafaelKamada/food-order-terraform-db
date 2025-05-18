@@ -21,5 +21,6 @@ output "security_group_id" {
 # Outputs completos para strings de conexão
 output "postgres_connection_string" {
   description = "String de conexão completa do PostgreSQL"
-  value = "postgresql://${aws_db_instance.rds_postgres.username}:${aws_db_instance.rds_postgres.password}@${aws_db_instance.rds_postgres.endpoint}:${aws_db_instance.rds_postgres.port}/${aws_db_instance.rds_postgres.db_name}"
+  value       = "postgresql://${aws_db_instance.rds_postgres.username}:${aws_db_instance.rds_postgres.password}@${aws_db_instance.rds_postgres.endpoint}:${aws_db_instance.rds_postgres.port}/${aws_db_instance.rds_postgres.db_name}"
+  sensitive   = true
 }
