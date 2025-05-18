@@ -15,6 +15,7 @@ output "vpc_id" {
 }
 
 output "security_group_id" {
+  description = "ID do Security Group criado para os bancos"
   value = aws_security_group.sg.id
 }
 

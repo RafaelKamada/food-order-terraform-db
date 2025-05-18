@@ -11,7 +11,7 @@ resource "aws_db_instance" "mongodb" {
   db_name               = "FoodOrder_Cardapio"
   
   db_subnet_group_name   = var.mongodb_subnet_group_name
-  vpc_security_group_ids = [var.db_security_group_id]
+  vpc_security_group_ids = [aws_security_group.sg.id]
   publicly_accessible    = false
 
   backup_window          = "03:00-04:00"
