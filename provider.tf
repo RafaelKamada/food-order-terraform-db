@@ -1,23 +1,20 @@
+# provider.tf
 provider "aws" {
   region = var.regionDefault
 }
 
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.main.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.main.certificate_authority[0].data)
+  host                   = aws_eks_cluster.eks_cluster.endpoint
+  cluster_ca_certificate = base64decode(aws_eks_cluster.eks_cluster.certificate_authority[0].data)
   token                  = data.aws_eks_cluster_auth.main.token
 }
 
 provider "kubernetes-alpha" {
-  host                   = data.aws_eks_cluster.main.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.main.certificate_authority[0].data)
+  host                   = aws_eks_cluster.eks_cluster.endpoint
+  cluster_ca_certificate = base64decode(aws_eks_cluster.eks_cluster.certificate_authority[0].data)
   token                  = data.aws_eks_cluster_auth.main.token
 }
 
-data "aws_eks_cluster" "main" {
-  name = var.eks_cluster
-}
-
 data "aws_eks_cluster_auth" "main" {
-  name = var.eks_cluster
+  name = aws_eks_cluster.eks_cluster.name
 }
