@@ -2,24 +2,15 @@ resource "aws_security_group" "sg" {
   name        = "SG-${var.projectName}"
   description = "Security Group do Food Order API e RDS"
   vpc_id      = local.vpc_id
-
-  # Permitir tráfego do API Gateway para o Load Balancer
-  ingress {
-    description = "HTTP from API Gateway"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]  # CIDR block da VPC
-  }
-
+ 
   ingress {
     description     = "PostgreSQL from EKS"
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    cidr_blocks     = ["172.31.0.0/16"]
+    cidr_blocks     = ["0.0.0.0/0"]
   }
-
+  
   ingress {
     description = "Allow nodes to communicate with each other"
     from_port   = 0
@@ -49,7 +40,7 @@ resource "aws_security_group" "sg" {
     from_port   = 27017
     to_port     = 27017
     protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]  # CIDR block da VPC
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
