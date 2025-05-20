@@ -20,7 +20,7 @@ variable "eks_cluster" {
 }
 
 variable "labRole" {
-  default = "arn:aws:iam::276201098979:role/LabRole"
+  default = "arn:aws:iam::618817506326:role/LabRole"
 }
 
 variable "instanceType" {
@@ -28,11 +28,11 @@ variable "instanceType" {
 }
 
 variable "principalArn" {
-  default = "arn:aws:iam::276201098979:role/voclabs"
+  default = "arn:aws:iam::618817506326:role/voclabs"
 }
 
 variable "rds_arn" {
-  default = "arn:aws:rds:us-east-1:276201098979::db:rdsName"
+  default = "arn:aws:rds:us-east-1:618817506326::db:rdsName"
 }
 
 # Security Group compartilhado para RDS e MongoDB
